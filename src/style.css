@@ -89,6 +89,24 @@ body {
 }
 .logo .dot { color: var(--hot); }
 
+/* ── Logo Row ── */
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tutorial-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.tutorial-btn:hover {
+  color: var(--neon);
+}
+
 /* ── Headings override with display font ── */
 .display {
   font-family: 'Dela Gothic One', sans-serif;
