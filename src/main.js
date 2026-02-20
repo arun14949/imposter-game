@@ -162,7 +162,7 @@ function showRevealCard() {
     sub.textContent = "Remember it. Don't give it away!";
   }
 
-  $('gotItBtn').style.display = 'none';
+  $('gotItBtn').style.visibility = 'hidden';
   updateProgress();
   showScreen('reveal');
 }
@@ -182,7 +182,7 @@ function flipCard() {
   setTimeout(sfxRevealWord, 350);
   setTimeout(() => {
     const btn = $('gotItBtn');
-    btn.style.display = '';
+    btn.style.visibility = 'visible';
     btn.textContent = state.currentPlayer < state.players - 1
       ? 'Got it — Pass the phone'
       : 'Got it — Start the round!';
