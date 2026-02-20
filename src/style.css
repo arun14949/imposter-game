@@ -54,10 +54,11 @@ body {
 #app {
   width: 100%;
   max-width: 420px;
-  min-height: 100dvh;
+  height: 100dvh;
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* ── Screens ── */
@@ -65,6 +66,8 @@ body {
   display: none;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
   animation: screenIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .screen.active { display: flex; }
@@ -159,18 +162,11 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   perspective: 1000px;
   width: calc(100vw - 48px);
   max-width: 380px;
-  aspect-ratio: 3/4;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 50dvh;
   cursor: pointer;
-  margin: 24px auto;
-  flex-shrink: 0;
-}
-@media (max-height: 680px) {
-  .flip-container { aspect-ratio: 4/5; }
-  .card-word { font-size: 1.8rem !important; }
-}
-@media (max-height: 560px) {
-  .flip-container { aspect-ratio: 1/1; }
-  .card-word { font-size: 1.5rem !important; }
+  margin: 16px auto;
 }
 
 .flip-card {
@@ -222,24 +218,19 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 }
 .flip-front .tap-hint {
   font-size: var(--text-7);
+  font-weight: var(--font-medium);
   color: var(--muted-foreground);
   position: absolute;
   bottom: 24px;
   left: 0;
   right: 0;
   z-index: 1;
-}
-.flip-front .tap-icon {
-  font-size: 2.4rem;
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 1;
-  animation: pulse 2s infinite;
+  animation: tapPulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.1); opacity: 1; }
+@keyframes tapPulse {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
 }
 
 .flip-back {
@@ -332,7 +323,7 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 }
 
 /* ── Layout Helpers ── */
-.spacer { flex: 1; min-height: 20px; }
+.spacer { flex: 1; min-height: 8px; }
 
 /* ── Better vertical rhythm ── */
 #app .vstack { gap: var(--space-5); }
