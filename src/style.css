@@ -387,9 +387,16 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   flex-shrink: 0;
 }
 .result-buttons {
-  flex-shrink: 0;
-  padding-top: 16px;
-  padding-bottom: 24px;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 380px;
+  z-index: 10;
+}
+.result-screen .result-cards {
+  padding-bottom: 220px;
 }
 
 
