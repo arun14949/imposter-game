@@ -255,17 +255,12 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 .flip-back {
   transform: rotateY(180deg);
 }
-.flip-back.word-card {
-  transform: rotateY(180deg);
-  background: linear-gradient(145deg, #1a3a1a 0%, #0a2a0a 100%);
-  border: 2px solid var(--neon);
-  box-shadow: 0 0 60px rgba(205,255,80,0.15), inset 0 0 60px rgba(205,255,80,0.05);
-}
+.flip-back.word-card,
 .flip-back.imposter-card {
   transform: rotateY(180deg);
-  background: linear-gradient(145deg, #3a1a2a 0%, #2a0a1a 100%);
-  border: 2px solid var(--hot);
-  box-shadow: 0 0 60px rgba(255,60,111,0.15), inset 0 0 60px rgba(255,60,111,0.05);
+  background: linear-gradient(145deg, #1a1a3a 0%, #0D0B1A 100%);
+  border: 2px solid var(--ice);
+  box-shadow: 0 0 60px rgba(60,240,255,0.1), inset 0 0 60px rgba(60,240,255,0.03);
 }
 
 .card-word {
@@ -277,8 +272,8 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   word-break: break-word;
   width: 100%;
 }
-.word-card .card-word { color: var(--neon); text-shadow: 0 0 30px rgba(205,255,80,0.4); }
-.imposter-card .card-word { color: var(--hot); text-shadow: 0 0 30px rgba(255,60,111,0.4); }
+.word-card .card-word,
+.imposter-card .card-word { color: var(--foreground); text-shadow: 0 0 30px rgba(255,255,255,0.2); }
 
 .card-sub {
   font-size: var(--text-7);
