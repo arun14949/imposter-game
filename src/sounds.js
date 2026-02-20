@@ -58,6 +58,12 @@ export function sfxTap() {
   playTone(1200, 0.06, 'sine', 0.1, 0.02);
 }
 
+export function sfxDenied() {
+  resumeCtx();
+  playTone(200, 0.12, 'square', 0.1);
+  playTone(160, 0.12, 'square', 0.08, 0.1);
+}
+
 export function sfxFlip() {
   resumeCtx();
   playNoise(0.12, 0.2);

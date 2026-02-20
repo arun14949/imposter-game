@@ -106,6 +106,7 @@ body {
   height: 52px;
   font-size: 1.4rem;
   flex-shrink: 0;
+  pointer-events: auto !important;
 }
 .stepper .stepper-value {
   flex: 1;

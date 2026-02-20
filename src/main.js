@@ -2,7 +2,7 @@ import '@knadh/oat/oat.min.css';
 import '@knadh/oat/oat.min.js';
 import './style.css';
 import { WORDS, CATEGORIES } from './words.js';
-import { sfxTap, sfxFlip, sfxRevealWord, sfxPass, sfxStartGame, sfxResults, sfxConfetti, sfxRestart } from './sounds.js';
+import { sfxTap, sfxDenied, sfxFlip, sfxRevealWord, sfxPass, sfxStartGame, sfxResults, sfxConfetti, sfxRestart } from './sounds.js';
 
 // ── Game State ──
 const state = {
@@ -30,6 +30,14 @@ function bindEvents() {
   $('pPlus').addEventListener('click', () => { sfxTap(); adjustPlayers(1); });
   $('iMinus').addEventListener('click', () => { sfxTap(); adjustImposters(-1); });
   $('iPlus').addEventListener('click', () => { sfxTap(); adjustImposters(1); });
+
+  // Play denied sound when tapping disabled stepper buttons
+  document.querySelectorAll('.stepper').forEach(stepper => {
+    stepper.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (btn && btn.disabled) sfxDenied();
+    });
+  });
   $('startBtn').addEventListener('click', startGame);
   $('readyBtn').addEventListener('click', showRevealCard);
   $('flipContainer').addEventListener('click', flipCard);
