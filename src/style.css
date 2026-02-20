@@ -380,32 +380,10 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 }
 .result-buttons {
   flex-shrink: 0;
-  position: sticky;
-  bottom: 0;
   padding-top: 16px;
-  padding-bottom: 8px;
-  background: var(--deep);
-  z-index: 2;
-}
-.result-buttons::before {
-  content: '';
-  position: absolute;
-  top: -24px;
-  left: 0;
-  right: 0;
-  height: 24px;
-  background: linear-gradient(to top, var(--deep), transparent);
-  pointer-events: none;
+  padding-bottom: 24px;
 }
 
-/* ── Credit Text ── */
-.credit-text {
-  text-align: center;
-  font-size: var(--text-8);
-  color: var(--muted-foreground);
-  opacity: 0.4;
-  padding: 40px 0 16px;
-}
 
 /* ── Stagger Animation ── */
 .stagger > * {
