@@ -294,6 +294,7 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 .secret-word-reveal {
   font-family: 'Dela Gothic One', sans-serif;
   font-size: 3rem;
+  line-height: 120%;
   color: var(--neon);
   text-shadow: 0 0 40px rgba(205,255,80,0.3);
   letter-spacing: -1px;
@@ -369,6 +370,11 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 }
 @keyframes confettiFall {
   to { top: 110vh; transform: rotateZ(720deg) translateX(var(--drift)); }
+}
+
+/* ── Setup Screen Scrollable ── */
+#setup {
+  overflow-y: auto !important;
 }
 
 /* ── Result Screen Layout ── */
