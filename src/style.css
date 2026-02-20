@@ -369,6 +369,21 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   to { top: 110vh; transform: rotateZ(720deg) translateX(var(--drift)); }
 }
 
+/* ── Credit Text ── */
+.credit-text {
+  text-align: center;
+  font-size: var(--text-8);
+  color: var(--muted-foreground);
+  opacity: 0.4;
+  padding: 40px 0 16px;
+  margin-top: 24px;
+}
+
+/* ── Result screen scrollable ── */
+#result {
+  overflow-y: auto;
+}
+
 /* ── Stagger Animation ── */
 .stagger > * {
   animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
