@@ -74,7 +74,7 @@
   </div>
 
   <!-- ═══════ REVEAL SCREEN ═══════ -->
-  <div id="reveal" class="screen">
+  <div id="reveal" class="screen reveal-screen">
     <div class="screen-header">
       <progress id="revealProgress2" value="0" max="100" class="w-100"></progress>
       <div class="header-row">
@@ -83,25 +83,19 @@
       </div>
     </div>
 
-    <div class="spacer"></div>
-
-    <div class="text-center">
-      <div class="flip-container" id="flipContainer">
-        <div class="flip-card" id="flipCard">
-          <div class="flip-face flip-front">
-            <div class="qmark">?</div>
-            <p class="tap-hint">Tap to reveal your role</p>
-          </div>
-          <div class="flip-face flip-back" id="flipBack">
-            <span class="badge mb-4" id="cardBadge">YOUR WORD</span>
-            <div class="card-word" id="cardWord"></div>
-            <p class="card-sub" id="cardSub"></p>
-          </div>
+    <div class="flip-container" id="flipContainer">
+      <div class="flip-card" id="flipCard">
+        <div class="flip-face flip-front">
+          <div class="qmark">?</div>
+          <p class="tap-hint">Tap to reveal your role</p>
+        </div>
+        <div class="flip-face flip-back" id="flipBack">
+          <span class="badge mb-4" id="cardBadge">YOUR WORD</span>
+          <div class="card-word" id="cardWord"></div>
+          <p class="card-sub" id="cardSub"></p>
         </div>
       </div>
     </div>
-
-    <div class="spacer"></div>
 
     <button data-variant="secondary" class="large w-100" id="gotItBtn" style="display:none">Got it — Pass the phone</button>
   </div>

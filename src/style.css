@@ -162,9 +162,8 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   perspective: 1000px;
   width: calc(100vw - 48px);
   max-width: 380px;
-  flex: 1 1 auto;
+  flex: 1 1 100%;
   min-height: 0;
-  max-height: 50dvh;
   cursor: pointer;
   margin: 16px auto;
 }
@@ -251,11 +250,12 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 
 .card-word {
   font-family: 'Dela Gothic One', sans-serif;
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
   line-height: 1.1;
   letter-spacing: -1px;
-  padding: 0 12px;
+  padding: 0 16px;
   word-break: break-word;
+  width: 100%;
 }
 .word-card .card-word { color: var(--neon); text-shadow: 0 0 30px rgba(205,255,80,0.4); }
 .imposter-card .card-word { color: var(--hot); text-shadow: 0 0 30px rgba(255,60,111,0.4); }
@@ -320,6 +320,14 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   font-size: var(--text-8) !important;
   padding: var(--space-1) var(--space-3) !important;
   white-space: nowrap;
+}
+
+/* ── Reveal screen: card fills available space ── */
+.reveal-screen {
+  gap: 16px;
+}
+.reveal-screen .flip-container {
+  margin: 0 auto;
 }
 
 /* ── Layout Helpers ── */
