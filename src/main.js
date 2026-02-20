@@ -2,7 +2,7 @@ import '@knadh/oat/oat.min.css';
 import '@knadh/oat/oat.min.js';
 import './style.css';
 import { WORDS, CATEGORIES } from './words.js';
-import { sfxTap, sfxFlip, sfxRevealWord, sfxPass, sfxStartGame, sfxResults, sfxConfetti } from './sounds.js';
+import { sfxTap, sfxFlip, sfxRevealWord, sfxPass, sfxStartGame, sfxResults, sfxConfetti, sfxRestart } from './sounds.js';
 
 // ── Game State ──
 const state = {
@@ -38,9 +38,9 @@ function bindEvents() {
   $('newRoundBtn').addEventListener('click', newRound);
   $('playAgainBtn').addEventListener('click', newRound);
   $('changeSettingsBtn').addEventListener('click', backToSetup);
-  $('restartPass').addEventListener('click', backToSetup);
-  $('restartReveal').addEventListener('click', backToSetup);
-  $('restartRound').addEventListener('click', backToSetup);
+  $('restartPass').addEventListener('click', () => { sfxRestart(); backToSetup(); });
+  $('restartReveal').addEventListener('click', () => { sfxRestart(); backToSetup(); });
+  $('restartRound').addEventListener('click', () => { sfxRestart(); backToSetup(); });
 }
 
 function renderCategories() {

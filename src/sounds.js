@@ -114,3 +114,9 @@ export function sfxConfetti() {
   }
   playNoise(0.25, 0.06, 0.1);
 }
+
+export function sfxRestart() {
+  resumeCtx();
+  playTone(660, 0.1, 'triangle', 0.15);
+  playTone(440, 0.15, 'triangle', 0.12, 0.08);
+}
