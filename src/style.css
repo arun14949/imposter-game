@@ -325,9 +325,17 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 /* ── Reveal screen: card fills available space ── */
 .reveal-screen {
   gap: 16px;
+  position: relative;
+  padding-bottom: 72px; /* reserve space for absolute button */
 }
 .reveal-screen .flip-container {
   margin: 0 auto;
+}
+.reveal-screen #gotItBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* ── Layout Helpers ── */
