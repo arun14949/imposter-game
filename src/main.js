@@ -216,6 +216,28 @@ function nextPlayer() {
   }
 }
 
+function fitSecretWord(el) {
+  const word = state.secretWord;
+  const isSingleWord = word.trim().split(/\s+/).length === 1;
+
+  // Reset to default
+  el.style.fontSize = '';
+  el.style.whiteSpace = '';
+
+  if (isSingleWord) {
+    el.style.whiteSpace = 'nowrap';
+    // Start at 3rem and shrink to fit container width
+    const container = el.parentElement;
+    let size = 48; // 3rem in px
+    el.style.fontSize = size + 'px';
+    while (el.scrollWidth > container.clientWidth - 48 && size > 16) {
+      size -= 2;
+      el.style.fontSize = size + 'px';
+    }
+  }
+  // Multi-word: default CSS handles wrapping at 120% line-height
+}
+
 function showResults() {
   const list = $('imposterList');
   list.innerHTML = state.roles
@@ -225,7 +247,9 @@ function showResults() {
     .filter(Boolean)
     .join('');
 
-  $('secretWordReveal').textContent = state.secretWord;
+  const wordEl = $('secretWordReveal');
+  wordEl.textContent = state.secretWord;
+  fitSecretWord(wordEl);
   showScreen('result');
   sfxResults();
   spawnConfetti();
