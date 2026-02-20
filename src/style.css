@@ -1,0 +1,330 @@
+/* ── Oat Theme Overrides ── */
+[data-theme="dark"] {
+  --background: #0D0B1A;
+  --foreground: #E8E6F0;
+  --card: #16132A;
+  --card-foreground: #E8E6F0;
+  --primary: #CDFF50;
+  --primary-foreground: #0D0B1A;
+  --secondary: #1E1B36;
+  --secondary-foreground: #E8E6F0;
+  --muted: #1E1B36;
+  --muted-foreground: #8B87A0;
+  --faint: #16132A;
+  --accent: #252240;
+  --danger: #FF3C6F;
+  --danger-foreground: #fff;
+  --success: #CDFF50;
+  --success-foreground: #0D0B1A;
+  --warning: #FFD93D;
+  --warning-foreground: #0D0B1A;
+  --border: rgba(255,255,255,0.08);
+  --input: rgba(255,255,255,0.1);
+  --ring: #CDFF50;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --radius-medium: 12px;
+  --radius-large: 16px;
+}
+
+/* ── Custom Properties ── */
+:root {
+  --neon: #CDFF50;
+  --hot: #FF3C6F;
+  --ice: #3CF0FF;
+  --deep: #0D0B1A;
+  --surface: #16132A;
+  --surface-2: #1E1B36;
+}
+
+html, body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(205,255,80,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(60,240,255,0.04) 0%, transparent 50%),
+    var(--deep);
+}
+
+#app {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100dvh;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Screens ── */
+.screen {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  animation: screenIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.screen.active { display: flex; }
+
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Logo ── */
+.logo {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: -1px;
+  line-height: 1;
+  color: var(--neon);
+  text-shadow: 0 0 40px rgba(205,255,80,0.3);
+}
+.logo .dot { color: var(--hot); }
+
+/* ── Headings override with display font ── */
+.display {
+  font-family: 'Dela Gothic One', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+/* ── Stepper ── */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.stepper button {
+  width: 52px;
+  height: 52px;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.stepper .stepper-value {
+  flex: 1;
+  text-align: center;
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 2rem;
+  color: var(--neon);
+}
+
+/* ── Category Pills ── */
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  background: var(--secondary);
+  color: var(--muted-foreground);
+  font-size: var(--text-7);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.pill:hover { border-color: rgba(205,255,80,0.3); color: var(--foreground); }
+.pill.selected {
+  background: var(--neon);
+  color: var(--deep);
+  border-color: var(--neon);
+  font-weight: var(--font-semibold);
+  box-shadow: 0 0 20px rgba(205,255,80,0.2);
+}
+
+/* ── Large CTA Buttons ── */
+button.cta {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: -0.3px;
+  padding: 16px 32px;
+  box-shadow: 0 4px 24px rgba(205,255,80,0.15);
+}
+button.cta[data-variant="danger"] {
+  box-shadow: 0 4px 24px rgba(255,60,111,0.15);
+}
+
+/* ── Progress override for neon ── */
+progress::-webkit-progress-value { background-color: var(--neon); }
+progress::-moz-progress-bar { background-color: var(--neon); }
+
+/* ── Card Flip ── */
+.flip-container {
+  perspective: 1000px;
+  width: 100%;
+  aspect-ratio: 3/4;
+  max-height: 380px;
+  cursor: pointer;
+}
+.flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.flip-card.flipped { transform: rotateY(180deg); }
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-large);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.flip-front {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+.flip-front::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.01) 10px, rgba(255,255,255,0.01) 20px);
+  pointer-events: none;
+}
+.flip-front .qmark {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 6rem;
+  color: var(--neon);
+  opacity: 0.15;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.flip-front .tap-hint {
+  font-size: var(--text-7);
+  color: var(--muted-foreground);
+  position: relative;
+  z-index: 1;
+}
+.flip-front .tap-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.flip-back { transform: rotateY(180deg); }
+.flip-back.word-card {
+  background: linear-gradient(145deg, #1a3a1a 0%, #0a2a0a 100%);
+  border: 2px solid var(--neon);
+  box-shadow: 0 0 60px rgba(205,255,80,0.15), inset 0 0 60px rgba(205,255,80,0.05);
+}
+.flip-back.imposter-card {
+  background: linear-gradient(145deg, #3a1a2a 0%, #2a0a1a 100%);
+  border: 2px solid var(--hot);
+  box-shadow: 0 0 60px rgba(255,60,111,0.15), inset 0 0 60px rgba(255,60,111,0.05);
+}
+
+.card-word {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 2.6rem;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.word-card .card-word { color: var(--neon); text-shadow: 0 0 30px rgba(205,255,80,0.4); }
+.imposter-card .card-word { color: var(--hot); text-shadow: 0 0 30px rgba(255,60,111,0.4); }
+
+.card-sub {
+  font-size: var(--text-7);
+  color: var(--muted-foreground);
+  margin-top: 16px;
+}
+
+/* ── Pass Screen ── */
+.player-number {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--neon);
+  text-shadow: 0 0 60px rgba(205,255,80,0.25);
+}
+
+.pass-icon {
+  font-size: 3rem;
+  animation: slidePhone 1.5s ease-in-out infinite;
+}
+
+@keyframes slidePhone {
+  0%, 100% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+}
+
+/* ── Round Screen ── */
+.round-icon { font-size: 5rem; }
+
+/* ── Result ── */
+.secret-word-reveal {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 3rem;
+  color: var(--neon);
+  text-shadow: 0 0 40px rgba(205,255,80,0.3);
+  letter-spacing: -1px;
+  animation: revealWord 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes revealWord {
+  from { opacity: 0; transform: scale(0.5) rotateX(40deg); }
+  to { opacity: 1; transform: scale(1) rotateX(0); }
+}
+
+/* ── Layout Helpers ── */
+.spacer { flex: 1; }
+
+/* ── Confetti ── */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -20px;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { top: 110vh; transform: rotateZ(720deg) translateX(var(--drift)); }
+}
+
+/* ── Stagger Animation ── */
+.stagger > * {
+  animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.stagger > *:nth-child(1) { animation-delay: 0s; }
+.stagger > *:nth-child(2) { animation-delay: 0.06s; }
+.stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger > *:nth-child(4) { animation-delay: 0.18s; }
+.stagger > *:nth-child(5) { animation-delay: 0.24s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger > *:nth-child(7) { animation-delay: 0.36s; }
+.stagger > *:nth-child(8) { animation-delay: 0.42s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
