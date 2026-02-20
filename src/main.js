@@ -34,7 +34,7 @@ function bindEvents() {
   // Play denied sound on second tap of a disabled stepper button
   let lastDisabledBtn = null;
   document.querySelectorAll('.stepper').forEach(stepper => {
-    stepper.addEventListener('click', (e) => {
+    stepper.addEventListener('pointerdown', (e) => {
       const btn = e.target.closest('button');
       if (btn && btn.disabled) {
         if (lastDisabledBtn === btn) {
