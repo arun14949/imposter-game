@@ -38,6 +38,9 @@ function bindEvents() {
   $('newRoundBtn').addEventListener('click', newRound);
   $('playAgainBtn').addEventListener('click', newRound);
   $('changeSettingsBtn').addEventListener('click', backToSetup);
+  $('restartPass').addEventListener('click', backToSetup);
+  $('restartReveal').addEventListener('click', backToSetup);
+  $('restartRound').addEventListener('click', backToSetup);
 }
 
 function renderCategories() {
