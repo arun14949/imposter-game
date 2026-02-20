@@ -157,10 +157,10 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 /* ── Card Flip ── */
 .flip-container {
   perspective: 1000px;
-  width: 260px;
+  width: 320px;
   aspect-ratio: 3/4;
   cursor: pointer;
-  margin: 16px auto;
+  margin: 24px auto;
   flex-shrink: 0;
 }
 @media (max-height: 680px) {
@@ -222,7 +222,10 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 .flip-front .tap-hint {
   font-size: var(--text-7);
   color: var(--muted-foreground);
-  position: relative;
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
   z-index: 1;
 }
 .flip-front .tap-icon {
@@ -256,9 +259,11 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 
 .card-word {
   font-family: 'Dela Gothic One', sans-serif;
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   line-height: 1.1;
   letter-spacing: -1px;
+  padding: 0 12px;
+  word-break: break-word;
 }
 .word-card .card-word { color: var(--neon); text-shadow: 0 0 30px rgba(205,255,80,0.4); }
 .imposter-card .card-word { color: var(--hot); text-shadow: 0 0 30px rgba(255,60,111,0.4); }
@@ -309,13 +314,15 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 /* ── Screen Header (progress + restart) ── */
 .screen-header {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.header-row {
+  display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
 }
-.screen-header .progress-wrap {
-  flex: 1;
-  min-width: 0;
-}
+.header-row p { margin: 0; }
 .btn-restart {
   flex-shrink: 0;
   font-size: var(--text-8) !important;
