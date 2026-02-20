@@ -143,29 +143,31 @@
   </div>
 
   <!-- ═══════ RESULT SCREEN ═══════ -->
-  <div id="result" class="screen stagger">
-    <div class="mt-4"></div>
+  <div id="result" class="screen result-screen stagger">
+    <div class="result-cards">
+      <div class="mt-4"></div>
 
-    <article class="card text-center">
-      <header>
-        <p class="text-light"><small>THE IMPOSTERS WERE</small></p>
-      </header>
-      <div id="imposterList" class="vstack items-center gap-2 mt-2"></div>
-    </article>
+      <article class="card text-center">
+        <header>
+          <p class="text-light"><small>THE IMPOSTERS WERE</small></p>
+        </header>
+        <div id="imposterList" class="vstack items-center gap-2 mt-2"></div>
+      </article>
 
-    <article class="card text-center mt-4">
-      <header>
-        <p class="text-light"><small>THE SECRET WORD WAS</small></p>
-      </header>
-      <div class="secret-word-reveal mt-2" id="secretWordReveal"></div>
-    </article>
+      <article class="card text-center mt-4">
+        <header>
+          <p class="text-light"><small>THE SECRET WORD WAS</small></p>
+        </header>
+        <div class="secret-word-reveal mt-2" id="secretWordReveal"></div>
+      </article>
+    </div>
 
-    <div class="spacer"></div>
-
-    <div class="vstack mt-4">
-      <button class="large cta w-100" id="playAgainBtn">Play Again</button>
-      <button data-variant="secondary" class="large w-100" id="changeSettingsBtn">Change Settings</button>
-      <button class="outline w-100" id="shareBtn">Share Game 🔗</button>
+    <div class="result-buttons">
+      <div class="vstack">
+        <button class="large cta w-100" id="playAgainBtn">Play Again</button>
+        <button data-variant="secondary" class="large w-100" id="changeSettingsBtn">Change Settings</button>
+        <button class="outline w-100" id="shareBtn">Share Game 🔗</button>
+      </div>
     </div>
     <p class="credit-text">© Inspired Monster</p>
   </div>

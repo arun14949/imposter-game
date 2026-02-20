@@ -371,6 +371,33 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   to { top: 110vh; transform: rotateZ(720deg) translateX(var(--drift)); }
 }
 
+/* ── Result Screen Layout ── */
+.result-screen {
+  overflow-y: auto !important;
+}
+.result-cards {
+  flex-shrink: 0;
+}
+.result-buttons {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  padding-top: 16px;
+  padding-bottom: 8px;
+  background: var(--deep);
+  z-index: 2;
+}
+.result-buttons::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to top, var(--deep), transparent);
+  pointer-events: none;
+}
+
 /* ── Credit Text ── */
 .credit-text {
   text-align: center;
@@ -378,12 +405,6 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   color: var(--muted-foreground);
   opacity: 0.4;
   padding: 40px 0 16px;
-  margin-top: 24px;
-}
-
-/* ── Result screen scrollable ── */
-#result {
-  overflow-y: auto;
 }
 
 /* ── Stagger Animation ── */
