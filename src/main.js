@@ -31,11 +31,19 @@ function bindEvents() {
   $('iMinus').addEventListener('click', () => { sfxTap(); adjustImposters(-1); });
   $('iPlus').addEventListener('click', () => { sfxTap(); adjustImposters(1); });
 
-  // Play denied sound when tapping disabled stepper buttons
+  // Play denied sound on second tap of a disabled stepper button
+  let lastDisabledBtn = null;
   document.querySelectorAll('.stepper').forEach(stepper => {
     stepper.addEventListener('click', (e) => {
       const btn = e.target.closest('button');
-      if (btn && btn.disabled) sfxDenied();
+      if (btn && btn.disabled) {
+        if (lastDisabledBtn === btn) {
+          sfxDenied();
+        }
+        lastDisabledBtn = btn;
+      } else {
+        lastDisabledBtn = null;
+      }
     });
   });
   $('startBtn').addEventListener('click', startGame);
