@@ -230,7 +230,7 @@ function fitSecretWord(el) {
     const container = el.parentElement;
     let size = 48; // 3rem in px
     el.style.fontSize = size + 'px';
-    while (el.scrollWidth > container.clientWidth - 48 && size > 16) {
+    while (el.scrollWidth > container.clientWidth - 48 && size > 24) {
       size -= 2;
       el.style.fontSize = size + 'px';
     }
