@@ -57,6 +57,7 @@ function bindEvents() {
   $('restartPass').addEventListener('click', () => { sfxRestart(); backToSetup(); });
   $('restartReveal').addEventListener('click', () => { sfxRestart(); backToSetup(); });
   $('restartRound').addEventListener('click', () => { sfxRestart(); backToSetup(); });
+  $('shareBtn').addEventListener('click', shareGame);
 }
 
 function renderCategories() {
@@ -237,6 +238,23 @@ function newRound() {
 
 function backToSetup() {
   showScreen('setup');
+}
+
+async function shareGame() {
+  sfxTap();
+  const shareData = {
+    title: 'IMPOSTER — The Party Word Game',
+    text: 'One phone, many suspects. Find the imposter among your friends!',
+    url: 'https://impostermonster.vercel.app'
+  };
+  if (navigator.share) {
+    try { await navigator.share(shareData); } catch {}
+  } else {
+    await navigator.clipboard.writeText(shareData.url);
+    const btn = $('shareBtn');
+    btn.textContent = 'Link Copied!';
+    setTimeout(() => { btn.textContent = 'Share Game 🔗'; }, 2000);
+  }
 }
 
 // ── Confetti ──
