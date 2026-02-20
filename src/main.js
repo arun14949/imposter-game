@@ -168,11 +168,17 @@ function showRevealCard() {
 }
 
 function flipCard() {
-  if (state.cardRevealed) return;
-  state.cardRevealed = true;
+  const flipEl = $('flipCard');
   sfxFlip();
-  $('flipCard').classList.add('flipped');
-  const role = state.roles[state.currentPlayer];
+
+  if (state.cardRevealed) {
+    // Tap again to flip back (hide the word)
+    flipEl.classList.toggle('flipped');
+    return;
+  }
+
+  state.cardRevealed = true;
+  flipEl.classList.add('flipped');
   setTimeout(sfxRevealWord, 350);
   setTimeout(() => {
     const btn = $('gotItBtn');

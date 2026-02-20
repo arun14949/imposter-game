@@ -157,18 +157,19 @@ progress::-moz-progress-bar { background-color: var(--neon); }
 /* ── Card Flip ── */
 .flip-container {
   perspective: 1000px;
-  width: 320px;
+  width: calc(100vw - 48px);
+  max-width: 380px;
   aspect-ratio: 3/4;
   cursor: pointer;
   margin: 24px auto;
   flex-shrink: 0;
 }
 @media (max-height: 680px) {
-  .flip-container { width: 220px; }
+  .flip-container { aspect-ratio: 4/5; }
   .card-word { font-size: 1.8rem !important; }
 }
 @media (max-height: 560px) {
-  .flip-container { width: 180px; }
+  .flip-container { aspect-ratio: 1/1; }
   .card-word { font-size: 1.5rem !important; }
 }
 
