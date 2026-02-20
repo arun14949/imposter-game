@@ -297,7 +297,8 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   color: var(--neon);
   text-shadow: 0 0 40px rgba(205,255,80,0.3);
   letter-spacing: -1px;
-  padding-bottom: 24px;
+  padding: 0 24px 24px;
+  word-break: break-word;
   animation: revealWord 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
