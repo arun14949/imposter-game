@@ -394,6 +394,7 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   width: calc(100% - 40px);
   max-width: 380px;
   z-index: 10;
+  animation: none !important;
 }
 .result-screen .result-cards {
   padding-bottom: 220px;
