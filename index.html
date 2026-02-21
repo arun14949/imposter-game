@@ -34,7 +34,7 @@
   <!-- ═══════ SETUP SCREEN ═══════ -->
   <div id="setup" class="screen active stagger">
     <div>
-      <div class="logo-row"><div class="logo">IMPOSTER<span class="dot">.</span></div><a href="https://www.youtube.com/shorts/O-xHdKAb7ys" target="_blank" rel="noopener" class="tutorial-btn" aria-label="How to play"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></a></div>
+      <div class="logo-row"><div class="logo">IMPOSTER<span class="dot">.</span></div><button class="tutorial-btn" id="tutorialBtn" aria-label="How to play"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button></div>
       <p class="text-light">The party word game. One phone, many suspects.</p>
     </div>
 
@@ -71,29 +71,6 @@
     <button class="large cta w-100 mt-4" id="startBtn">Start Game</button>
   </div>
 
-  <!-- ═══════ PASS SCREEN ═══════ -->
-  <div id="pass" class="screen">
-    <div class="screen-header">
-      <progress id="revealProgress" value="0" max="100" class="w-100"></progress>
-      <div class="header-row">
-        <p class="text-light" id="progressText">Player 1 of 4</p>
-        <button class="outline small btn-restart" id="restartPass">Restart</button>
-      </div>
-    </div>
-
-    <div class="spacer"></div>
-
-    <div class="text-center vstack items-center stagger" id="passContent">
-      <div class="pass-icon">📱</div>
-      <h3 class="display" id="passTitle">Pass to</h3>
-      <div class="player-number" id="passPlayerNum">1</div>
-    </div>
-
-    <div class="spacer"></div>
-
-    <button class="large cta w-100" id="readyBtn">I'm Ready — Tap to Reveal</button>
-  </div>
-
   <!-- ═══════ REVEAL SCREEN ═══════ -->
   <div id="reveal" class="screen reveal-screen">
     <div class="screen-header">
@@ -108,7 +85,10 @@
       <div class="flip-card" id="flipCard">
         <div class="flip-face flip-front">
           <div class="qmark">?</div>
-          <p class="tap-hint">Tap to reveal your role</p>
+          <div class="front-bottom">
+            <div class="front-player-num" id="frontPlayerNum">Player 1</div>
+            <p class="tap-hint">Tap to reveal your role</p>
+          </div>
         </div>
         <div class="flip-face flip-back" id="flipBack">
           <span class="badge mb-4" id="cardBadge">YOUR WORD</span>
@@ -168,6 +148,16 @@
         <button data-variant="secondary" class="large w-100" id="changeSettingsBtn">Change Settings</button>
         <button class="outline w-100" id="shareBtn">Share Game 🔗</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══════ TUTORIAL MODAL ═══════ -->
+  <div class="modal-overlay" id="tutorialModal">
+    <div class="modal-content">
+      <div class="modal-video">
+        <iframe id="tutorialIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <button class="large cta w-100 modal-back-btn" id="tutorialClose">Back to Game</button>
     </div>
   </div>
 

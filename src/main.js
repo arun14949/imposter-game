@@ -3,6 +3,7 @@ import '@knadh/oat/oat.min.js';
 import './style.css';
 import { WORDS, CATEGORIES } from './words.js';
 import { sfxTap, sfxDenied, sfxFlip, sfxRevealWord, sfxPass, sfxStartGame, sfxResults, sfxConfetti, sfxRestart } from './sounds.js';
+import { inject } from '@vercel/analytics';
 
 // ── Game State ──
 const state = {
@@ -46,15 +47,18 @@ function bindEvents() {
       }
     });
   });
+  $('tutorialBtn').addEventListener('click', openTutorial);
+  $('tutorialClose').addEventListener('click', closeTutorial);
+  $('tutorialModal').addEventListener('click', (e) => {
+    if (e.target === $('tutorialModal')) closeTutorial();
+  });
   $('startBtn').addEventListener('click', startGame);
-  $('readyBtn').addEventListener('click', showRevealCard);
   $('flipContainer').addEventListener('click', flipCard);
   $('gotItBtn').addEventListener('click', nextPlayer);
   $('revealImpostersBtn').addEventListener('click', showResults);
   $('newRoundBtn').addEventListener('click', newRound);
   $('playAgainBtn').addEventListener('click', newRound);
   $('changeSettingsBtn').addEventListener('click', backToSetup);
-  $('restartPass').addEventListener('click', () => { sfxRestart(); backToSetup(); });
   $('restartReveal').addEventListener('click', () => { sfxRestart(); backToSetup(); });
   $('restartRound').addEventListener('click', () => { sfxRestart(); backToSetup(); });
   $('shareBtn').addEventListener('click', shareGame);
@@ -129,59 +133,57 @@ function startGame() {
   state.currentPlayer = 0;
   state.cardRevealed = false;
   sfxStartGame();
-  showPassScreen();
-}
-
-function showPassScreen() {
-  updateProgress();
-  $('passPlayerNum').textContent = state.currentPlayer + 1;
-  showScreen('pass');
-  const c = $('passContent');
-  c.classList.remove('stagger');
-  void c.offsetHeight;
-  c.classList.add('stagger');
+  showRevealCard();
 }
 
 function updateProgress() {
   const pct = ((state.currentPlayer) / state.players) * 100;
   const txt = `Player ${state.currentPlayer + 1} of ${state.players}`;
 
-  [$('revealProgress'), $('revealProgress2')].forEach(el => {
-    if (el) el.value = pct;
-  });
-  [$('progressText'), $('progressText2')].forEach(el => {
-    if (el) el.textContent = txt;
-  });
+  $('revealProgress2').value = pct;
+  $('progressText2').textContent = txt;
 }
 
 function showRevealCard() {
   state.cardRevealed = false;
+  $('frontPlayerNum').textContent = `Player ${state.currentPlayer + 1}`;
   const flipCardEl = $('flipCard');
+  const wasFlipped = flipCardEl.classList.contains('flipped');
+
+  // Reset back face to neutral before flipping back so role color isn't visible
+  $('flipBack').className = 'flip-face flip-back';
+  $('cardWord').textContent = '';
+  $('cardSub').textContent = '';
+  $('cardBadge').textContent = '';
+
   flipCardEl.classList.remove('flipped');
-
-  const role = state.roles[state.currentPlayer];
-  const back = $('flipBack');
-  const badge = $('cardBadge');
-  const word = $('cardWord');
-  const sub = $('cardSub');
-
-  back.className = 'flip-face flip-back ' + (role === 'imposter' ? 'imposter-card' : 'word-card');
-
-  if (role === 'imposter') {
-    badge.className = 'badge danger mb-4';
-    badge.textContent = 'IMPOSTER';
-    word.textContent = 'IMPOSTER';
-    sub.textContent = "You don't know the word. Blend in!";
-  } else {
-    badge.className = 'badge success mb-4';
-    badge.textContent = 'YOUR WORD';
-    word.textContent = state.secretWord;
-    sub.textContent = "Remember it. Don't give it away!";
-  }
-
   $('gotItBtn').style.visibility = 'hidden';
   updateProgress();
   showScreen('reveal');
+
+  // Populate role content after flip-back animation finishes (or immediately if not flipped)
+  const delay = wasFlipped ? 700 : 0;
+  setTimeout(() => {
+    const role = state.roles[state.currentPlayer];
+    const back = $('flipBack');
+    const badge = $('cardBadge');
+    const word = $('cardWord');
+    const sub = $('cardSub');
+
+    back.className = 'flip-face flip-back ' + (role === 'imposter' ? 'imposter-card' : 'word-card');
+
+    if (role === 'imposter') {
+      badge.className = 'badge danger mb-4';
+      badge.textContent = 'IMPOSTER';
+      word.textContent = 'IMPOSTER';
+      sub.textContent = "You don't know the word. Blend in!";
+    } else {
+      badge.className = 'badge success mb-4';
+      badge.textContent = 'YOUR WORD';
+      word.textContent = state.secretWord;
+      sub.textContent = "Remember it. Don't give it away!";
+    }
+  }, delay);
 }
 
 function flipCard() {
@@ -201,8 +203,8 @@ function flipCard() {
     const btn = $('gotItBtn');
     btn.style.visibility = 'visible';
     btn.textContent = state.currentPlayer < state.players - 1
-      ? 'Got it — Pass the phone'
-      : 'Got it — Start the round!';
+      ? `Tap & Pass to Player ${state.currentPlayer + 2}`
+      : 'Start Discussion';
   }, 400);
 }
 
@@ -212,7 +214,7 @@ function nextPlayer() {
   if (state.currentPlayer >= state.players) {
     showScreen('round');
   } else {
-    showPassScreen();
+    showRevealCard();
   }
 }
 
@@ -281,6 +283,18 @@ async function shareGame() {
   }
 }
 
+// ── Tutorial Modal ──
+function openTutorial() {
+  sfxTap();
+  $('tutorialIframe').src = 'https://www.youtube.com/embed/O-xHdKAb7ys?autoplay=1';
+  $('tutorialModal').classList.add('active');
+}
+
+function closeTutorial() {
+  $('tutorialModal').classList.remove('active');
+  $('tutorialIframe').src = '';
+}
+
 // ── Confetti ──
 function spawnConfetti() {
   const container = $('confetti');
@@ -319,4 +333,5 @@ document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive:
 document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
 
 // ── Boot ──
+inject();
 init();
