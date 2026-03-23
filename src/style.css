@@ -477,3 +477,107 @@ progress::-moz-progress-bar { background-color: var(--neon); }
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Bug fix: utility used in HTML but never defined ── */
+.justify-end { justify-content: flex-end; }
+
+/* ── Desktop Responsive (768px+) ── */
+@media (min-width: 768px) {
+  #app {
+    max-width: 600px;
+    padding: 32px 40px;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(205,255,80,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 100%, rgba(60,240,255,0.06) 0%, transparent 50%),
+      var(--deep);
+  }
+
+  .logo {
+    font-size: 3rem;
+  }
+
+  .stepper button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.6rem;
+  }
+
+  .stepper .stepper-value {
+    font-size: 2.4rem;
+  }
+
+  .pill {
+    padding: 10px 20px;
+    font-size: var(--text-6);
+  }
+
+  button.cta {
+    font-size: 1.15rem;
+    padding: 18px 36px;
+  }
+
+  .flip-container {
+    width: 100%;
+    max-width: 520px;
+    margin: 24px auto;
+  }
+
+  .flip-front .qmark {
+    font-size: 8rem;
+  }
+
+  .flip-front .front-player-num {
+    font-size: 1.8rem;
+  }
+
+  .flip-face {
+    padding: 32px;
+  }
+
+  .card-word {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+
+  .reveal-screen {
+    padding-bottom: 80px;
+  }
+
+  .reveal-screen #gotItBtn {
+    max-width: 520px;
+  }
+
+  .round-icon {
+    font-size: 6rem;
+  }
+
+  .result-buttons {
+    max-width: 520px;
+  }
+
+  .secret-word-reveal {
+    font-size: 3.5rem;
+  }
+
+  .result-screen .result-cards {
+    padding-bottom: 240px;
+  }
+
+  .modal-content {
+    max-width: 720px;
+  }
+
+  .modal-video {
+    padding-bottom: 56.25%; /* 16:9 on desktop instead of 9:16 */
+  }
+
+  #app .vstack {
+    gap: var(--space-6);
+  }
+
+  .screen-header {
+    margin-bottom: var(--space-5);
+  }
+}
